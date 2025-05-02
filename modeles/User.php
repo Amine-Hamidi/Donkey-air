@@ -1,25 +1,58 @@
 <?php 
-require_once(__DIR__ . '/Base.php');
-require_once(__DIR__ . '/Crud.php');
+include_once(__DIR__ . '/Base.php');
 Class User extends Base{
-    private $id;
-    private $nom;
-    private $prenom;
-    private $email;
-    private $telephone;
-    private $genre;
-    private $mdp;
+    
 
-    public function  __construct($nom,$prenom,$email,$telephone,$genre,$mdp,$id=null) {
-        $this->id = $id;
-        $this->nom = $nom;
-        $this->prenom = $prenom;
-        $this->email = $email;
-        $this->telephone = $telephone;
-        $this->genre = $genre;
-        $this->mdp = $mdp;
+    public function __construct(){
+        parent::__construct();
     }
 
+    public function save($nom,$prenom,$genre,$email,$telephone,$password){
+        $stmt=$this->pdo->prepare("INSERT INTO users (nom,prenom,email,telephone,genre,password) VALUES (:nom, :prenom, :email, :telephone, :genre, :password)");
+        
+        return $stmt->execute([
+                'nom'=>$nom,
+                'prenom'=>$prenom,
+                'email'=>$email,
+                'telephone'=>$telephone,
+                'genre'=>$genre,
+                'password'=>$password
+        ]);
+
+    }
+    
+    public function findByEmail($email){
+        $stmt=$this->pdo->prepare("SELECT * from users where email= :email LIMIT 1");
+        $stmt->execute(['email'=>$email]);
+
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+    }
+    public function findById($id){
+        $stmt=$this->pdo->prepare("SELECT * from users where id= :id");
+        $stmt->execute(['id'=>$id]);
+
+        return $stmt -> fetch(PDO::FETCH_ASSOC);
+    }
+    public function delete($id){
+        $stmt=$this->pdo->prepare("DELETE FROM users where id= :id");
+        return $stmt->execute(['id'=>$id]);
+
+        
+    }
+    
+    public function update($id, $nom, $prenom, $genre, $email, $telephone, $password){
+
+        $stmt=$this->pdo->prepare("UPDATE users SET nom= :nom, prenom= :prenom, genre= :genre, email= :email, telephone= :telephone, password= :password 
+                                    where id=:id");
+        
+        return $stmt->execute(['id'=>$id,
+                            'nom'=>$nom,
+                            'prenom'=>$prenom,
+                            'genre'=>$genre,
+                            'email'=>$email,
+                            'telephone'=>$telephone,
+                            'password'=>$password]);
+    } 
 }
 
 

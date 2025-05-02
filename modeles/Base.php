@@ -5,7 +5,7 @@ include_once(__DIR__ . '/../config/db.php');
     public function __construct()
     {
         try{
-            $this->pdo=new PDO("mysql:host".HOST.";dbname=".DBNAME.";charser=utf8",USER,PASS);
+            $this->pdo=new PDO("mysql:host=".HOST.";dbname=".DBNAME.";charset=utf8",USER,PASS);
             
         }catch(PDOException $e){
             echo "Erreur de connexion: ".$e->getMessage();

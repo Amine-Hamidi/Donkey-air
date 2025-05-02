@@ -1,6 +1,4 @@
-<?php
-include './controlleur/UserControlleur.php';
-?>
+
 <h2>Inscription</h2>
 <form method="post" action="index.php?action=register">
     <input type="text" name="nom" placeholder="Nom" required><br>
