@@ -2,19 +2,30 @@
 include __DIR__.'/../modeles/findFlightModel.php';
 class findFlight{
     public function search(){
-        $ville_depart=$_GET['ville_depart'];
-        $ville_arrivee=$_GET['ville_arrivee'];
-        $date_depart=$_GET['date_depart'];
-        $date_retour=$_GET['date_retour'];
+        
+
+        // $flightObject=new Flight();
+        // $flightObject->searchFlight($ville_depart, $ville_arrivee, $date_depart, $date_retour);
 
         $flightObject=new Flight();
-        $flightObject->searchFlight($ville_depart, $ville_arrivee, $date_depart, $date_retour);
-
+        $departVille = $flightObject->searchDeparture();
+        $retourVille = $flightObject->searchReturn();
         
-        require '../Vues/searchFlight.php';
+        if ($_SERVER['REQUEST_METHOD']==='POST'){
+            $ville_depart=$_POST['ville_depart'] ;
+            $ville_arrivee=$_POST['ville_arrivee'] ;
+            
+            $_SESSION['date_depart']=$_POST['date_depart'];
+            $result=$flightObject->searchFlight($ville_depart, $ville_arrivee);
+            
+            //var_dump( $result);
+        }
+        require __DIR__.'/../Vues/searchFlight.php';
     }
+
 }
 
 $findFlightObject=new findFlight();
+
 $findFlightObject->search();
 ?>

@@ -7,32 +7,26 @@
 </head>
 <body>
     <?php
-    include __DIR__."/Vues/header.php";
+    include __DIR__."/header.php";
     ?>
     <h2>Trouvez votre vol</h2>
     <form action="" method="POST">
-        <input type="text" name="ville_depart" placeholder="Ville de départ" list="liste_villes_depart" required><br>
-        <datalist id="liste_villes_depart">
-            <option value="Paris">
-            <option value="Lyon">
-            <option value="Marseille">
-            <option value="Toulouse">
-            <option value="Nice">
-        </datalist>
-        <select>
-            <option>Paris</option>
-            <option>Lyon</option>
-        </select>
-        <input type="text" name="ville_arrivee" placeholder="Ville d'arrivée" list="liste_villes_arrivee" required><br>
-        <datalist id="liste_villes_arrivee">
-            <option value="Londres">
-            <option value="New York">
-            <option value="Tokyo">
-            <option value="Istanbul">
-            <option value="Dubai">
-        </datalist>
-        <input type="date" name="date_depart" placeholder="Date de départ" required><br>
-        <input type="date" name="date_retour" placeholder="Date de retour" ><br>
+       
+        <select name="ville_depart" id="ville_depart">
+        <option >Ville de départ</option>
+        <?php foreach( $departVille as $ville): ?>
+            <option><?php echo $ville['ville_depart']?></option>
+        <?php endforeach;  ?>
+        </select><br>
+        
+        <select name="ville_arrivee" id="ville_arrivee">
+        <option >Ville d'arrivée</option>
+        <?php foreach( $retourVille as $ville): ?>
+            <option ><?php echo $ville['ville_arrivee']?></option>
+        <?php endforeach;  ?>
+        </select><br>
+         <input type="date" name="date_depart" placeholder="Date de départ" required><br>
+        
         <button type="submit">Search</button>
     </form>
     
