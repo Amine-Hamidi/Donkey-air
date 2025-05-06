@@ -1,12 +1,16 @@
 <?php
-require_once './controlleur/UserControlleur.php';
+// require_once './controlleur/UserControlleur.php';
 
-$action = $_GET['action'] ?? 'register'; 
+// $action = $_GET['action'] ?? 'register'; 
 
-$controller = new UserControlleur();
+// $controller = new UserControlleur();
 
-if ($action === 'register') {
-    $controller->register();
-} else {
-    echo "Page inconnue.";
-}
+// if ($action === 'register') {
+//     $controller->register();
+// } else {
+//     echo "Page inconnue.";
+// }
+// require './Vues/header.php';
+require './controlleur/LoginControlleur.php';
+
+?>

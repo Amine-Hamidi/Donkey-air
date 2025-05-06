@@ -16,16 +16,21 @@
                 $telephone = $_POST['telephone'];
                 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-                $user->save($nom, $prenom, $genre, $email, $telephone, $password);
-                echo "dans if";
-                header('Location: index.php?action=login');
+                $result=$user->save($nom, $prenom, $genre, $email, $telephone, $password);
+                if($result==true){
+                    
+                }
+               // echo "dans if";
+                //header('Location: index.php');
                 //echo "Méthode register() appelée<br>";
-                exit();
+                //exit();
             }
             require './Vues/user/register.php';
         }
         
     }
+    $userObject= new UserControlleur();
+    $userObject->register();
 
 
     ?>

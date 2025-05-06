@@ -1,0 +1,53 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+h1 {
+    color: rgb(69, 116, 196);
+}
+.header-Air{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    background-color:rgb(69, 116, 196);
+    padding: 10px;
+
+}
+.nav-header ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+.nav-header a {
+    text-decoration: none;
+    color: rgb(227, 227, 230);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+header button{
+    padding: 10px;
+    background-color: rgb(92, 155, 214);
+    border-radius: 5px;
+    border: none;
+    color: rgb(227, 227, 230);
+}
+header p{
+    color: rgb(227, 227, 230);
+    
+}
+.donkey-air-h1{
+    background-color: rgb(174, 205, 235);
+    text-align: center;
+    
+    padding: 20px 0 10px 0;
+}
+th{
+    color: rgb(92, 155, 214);
+}

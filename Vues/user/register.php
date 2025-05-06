@@ -1,6 +1,6 @@
 
 <h2>Inscription</h2>
-<form method="post" action="index.php?action=register">
+<form method="post" action="">
     <input type="text" name="nom" placeholder="Nom" required><br>
     <input type="text" name="prenom" placeholder="Prénom" required><br>
     <input type="email" name="email" placeholder="Email" required><br>

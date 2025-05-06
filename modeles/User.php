@@ -9,15 +9,16 @@ Class User extends Base{
 
     public function save($nom,$prenom,$genre,$email,$telephone,$password){
         $stmt=$this->pdo->prepare("INSERT INTO users (nom,prenom,email,telephone,genre,password) VALUES (:nom, :prenom, :email, :telephone, :genre, :password)");
-        
-        return $stmt->execute([
-                'nom'=>$nom,
-                'prenom'=>$prenom,
-                'email'=>$email,
-                'telephone'=>$telephone,
-                'genre'=>$genre,
-                'password'=>$password
-        ]);
+        $resulat=$stmt->execute([
+            'nom'=>$nom,
+            'prenom'=>$prenom,
+            'email'=>$email,
+            'telephone'=>$telephone,
+            'genre'=>$genre,
+            'password'=>$password
+    ]);
+    
+        return $resulat;
 
     }
     
