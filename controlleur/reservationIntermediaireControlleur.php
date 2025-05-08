@@ -7,7 +7,7 @@
                 
                 
                 session_start();
-                //var_dump($_SESSION['options_choisies']);
+                
 
                 $reservationModelObject=new ReservationsIntModel();
                 $options=$reservationModelObject->getOptionById($_SESSION['options_choisies']);
@@ -19,19 +19,29 @@
                 
                 $ville_depart = $_SESSION['ville_depart'];
                 $ville_arrivee = $_SESSION['ville_arrivee'];
+                
                 $trajet = $reservationModelObject->read($ville_depart, $ville_arrivee);
                 $prixTrajet = $trajet['prix'];
+                
                 $prixTotal = $prixTrajet + $totalOptions;
-                require './Vues/pageIntermediaire.php';
-                if(isset($_POST['retour'])){
-                    header('Location: http://localhost:8000/reservation.php ');
-                    exit();
-                }else  if(isset($_POST['Valider'])){
-                    header('Location: http://localhost:8000/reservation.php ');
-                    exit();
-                }
-            
-               
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    if(isset($_POST['retour'])){
+                        header('Location: http://localhost:8000/reservation.php ');
+                        exit();
+                    }else  if(isset($_POST['Valider'])){
+                        $id = $_SESSION['user']['id'];
+                        $vol_id = $trajet['id'];
+                        $date_depart = $_SESSION['date_depart'];
+                        $reservation_id=$reservationModelObject->createReservation($id, $vol_id, $date_depart, $prixTotal);
+                        foreach($_SESSION['options_choisies'] as $option_id):
+                            $reservationModelObject->createOptionReservation($reservation_id,$option_id);
+                        endforeach;
+                        header('Location: http://localhost:8000/mesReservations.php ');
+                        exit();
+                    }
+                }else{
+                     require './Vues/pageIntermediaire.php';
+                    }
         }
     }
    $reservationObject=new ReservationIntermediaireControlleur();
