@@ -2,7 +2,19 @@
 include_once __DIR__.'/Base.php';
 
 
-class reservationsModel extends Base{
+class ReservationsIntModel extends Base{
+    public function getOptionById(array $id){
+        if (empty($id) ) return[];
+
+        $idRecuperer=implode(',',array_fill(0, count($id), '?'));
+
+        $sql="SELECT * from options where id IN ($idRecuperer)";
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute($id);
+        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
     public function read($ville_depart, $ville_arrivee){
         $stmt=$this->pdo->prepare('SELECT ville_depart, ville_arrivee, prix from vol where ville_depart= :ville_depart and ville_arrivee= :ville_arrivee ' );
         $stmt->execute([
@@ -11,11 +23,6 @@ class reservationsModel extends Base{
                         
                         ]);
                         return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-    public function Option(){
-        $stmt=$this->pdo->prepare('SELECT id,nom, prix from options');
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

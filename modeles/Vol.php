@@ -15,9 +15,12 @@ class Vol extends Base{
                                 'prix'=>$prix]);
     }
 
-    public function read(){
-        $stmt=$this->pdo->query('SELECT ville_depart, ville_arrivee, date_depart, date_retour, prix from vol');
-        
+    public function read($ville_depart, $ville_arrivee){
+        $stmt=$this->pdo->prepare('SELECT ville_depart, ville_arrivee, prix from vol where ville_depart= :ville_depart and ville_arrivee= :ville_arrivee ' );
+        $stmt->execute([
+            'ville_depart' => $ville_depart,
+            'ville_arrivee' => $ville_arrivee
+        ]);
         
         $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
         

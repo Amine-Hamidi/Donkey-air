@@ -5,7 +5,7 @@
 
         public function register()
         {
-            echo "Méthode register() appelée<br>";
+           
             if($_SERVER['REQUEST_METHOD']==='POST'){
                 $user= new user();
 
@@ -18,7 +18,8 @@
 
                 $result=$user->save($nom, $prenom, $genre, $email, $telephone, $password);
                 if($result==true){
-                    
+                    header('Location: index.php');
+                    exit();
                 }
                // echo "dans if";
                 //header('Location: index.php');
