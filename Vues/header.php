@@ -1,31 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/style.css">
-    
-</head>
-<body>
-    <header>
-        <div class="header-Air">
-            <div class="h1-header">
-                <p>M.Amine HAMIDI</p>
-            </div>
-        <div>
-            <nav class="nav-header">
-                <ul>
-                    <li><a href="#">Mon compte</a></li>
-                    <li><a href="vol.php">Mes réservations</a></li>
-                    <li><a href="#">Trouver un vol</a></li>
-                </ul>    
-            </nav>
-        </div>
-        <button>Déconnexion</button>
-        </div>
-        <div class="donkey-air-h1">
-            <h1>DONKEY AIR</h1>
-        </div>
-    </header>
-</body>
-</html>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
+<header class="top-header">
+    <div class="header-left">
+        <p>
+            <?= isset($_SESSION['user']) 
+                ? htmlspecialchars('Mr ' . $_SESSION['user']['prenom'] . ' ' . $_SESSION['user']['nom']) 
+                : 'Invité' ?>
+        </p>
+    </div>
+
+    <nav class="header-nav">
+        <a href="#">Mon compte</a>
+        <a href="mesReservations.php">Mes réservations</a>
+        <a href="search.php">Trouver un vol</a>
+    </nav>
+
+    <form method="post" action="logout.php" class="logout-form">
+        <button type="submit">Déconnexion</button>
+    </form>
+</header>
+
+<div class="banner">
+    <h1>DONKEY AIR</h1>
+</div>

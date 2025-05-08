@@ -24,17 +24,20 @@ class ReservationsIntModel extends Base{
                         ]);
                         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function createReservation($id, $vol_id, $date_voyage, $total){
-        $sql='INSERT INTO reservation (date_voyage, utilisateur_id, vol_id, total) VALUES(:date_voyage, :utilisateur_id, :vol_id, :total) ';
-        $stmt=$this->pdo->prepare($sql);
-        $stmt->execute(['date_voyage'=>$date_voyage,
-                                'utilisateur_id'=>$id,
-                                'vol_id'=>$vol_id,
-                                'total'=>$total]);
-        $result=$this->pdo->lastInsertId();
-
-        return $result;
+    public function createReservation($utilisateur_id, $vol_id, $date_voyage, $total) {
+       
+        $sql = 'INSERT INTO reservation (date_voyage, utilisateur_id, vol_id, total)
+                VALUES (:date_voyage, :utilisateur_id, :vol_id, :total)';
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            'date_voyage' => $date_voyage,
+            'utilisateur_id' => $utilisateur_id,
+            'vol_id' => $vol_id,
+            'total' => $total
+        ]);
+        return $this->pdo->lastInsertId();
     }
+    
     public function createOptionReservation($id_reservation,$id_option){
         $sql='INSERT INTO reservation_option (option_id, reservation_id) VALUES(:option_id, :reservation_id) ';
         $stmt=$this->pdo->prepare($sql);

@@ -2,52 +2,64 @@
     margin: 0;
     padding: 0;
 }
-
-
-h1 {
-    color: rgb(69, 116, 196);
-}
-.header-Air{
+/* Top blue header */
+.top-header {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
     align-items: center;
-    background-color:rgb(69, 116, 196);
-    padding: 10px;
-
+    background-color: #2a5aa2;
+    color: white;
+    padding: 10px 20px;
+    font-family: sans-serif;
 }
-.nav-header ul {
-    list-style: none;
+
+/* Left side: user name */
+.header-left p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Right side: navigation */
+.header-nav {
     display: flex;
     gap: 20px;
-    padding: 0;
-    margin: 0;
-    justify-content: center;
-    align-items: center;
 }
-.nav-header a {
+
+.header-nav a {
+    color: white;
     text-decoration: none;
-    color: rgb(227, 227, 230);
     font-weight: bold;
-    transition: color 0.3s;
 }
-header button{
-    padding: 10px;
-    background-color: rgb(92, 155, 214);
-    border-radius: 5px;
-    border: none;
-    color: rgb(227, 227, 230);
+
+.header-nav a:hover {
+    text-decoration: underline;
 }
-header p{
-    color: rgb(227, 227, 230);
-    
+
+/* Logout button */
+.logout-form button {
+    background-color: #fff;
+    color: #2a5aa2;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
 }
-.donkey-air-h1{
-    background-color: rgb(174, 205, 235);
+
+.logout-form button:hover {
+    background-color: #f1f1f1;
+}
+
+/* Main banner */
+.banner {
+    background-color: #b0d0f5;
     text-align: center;
-    
-    padding: 20px 0 10px 0;
+    padding: 20px 0;
 }
-th{
-    color: rgb(92, 155, 214);
+
+.banner h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #2a5aa2;
+    font-family: sans-serif;
 }

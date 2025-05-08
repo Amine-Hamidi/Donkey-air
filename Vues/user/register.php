@@ -1,6 +1,6 @@
 
 <h2>Inscription</h2>
-<form method="post" action="">
+<form method="post" >
     <input type="text" name="nom" placeholder="Nom" required><br>
     <input type="text" name="prenom" placeholder="Prénom" required><br>
     <input type="email" name="email" placeholder="Email" required><br>

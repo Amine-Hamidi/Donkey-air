@@ -17,7 +17,7 @@ class newReservationModel extends Base{
     public function deleteReservation($id) {
        
         $stmt = $this->pdo->prepare('DELETE FROM reservation_option WHERE reservation_id = :id');
-        $stmt->execute(['id' => $id]);
+        $stmt->execute(['id' => $id]); 
     
         $stmt = $this->pdo->prepare('DELETE FROM reservation WHERE id = :id');
         $stmt->execute(['id' => $id]);
@@ -29,6 +29,15 @@ class newReservationModel extends Base{
             'date_voyage' => $new_date,
             'id' => $id
         ]);
+        
+    }
+    public function getReservationById($id){
+        
+        $sql='SELECT reservation.id, reservation.date_voyage FROM reservation where reservation.id= :id ';
+        $stmt=$this->pdo->prepare($sql);
+        $stmt->execute(['id'=>$id]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
 }

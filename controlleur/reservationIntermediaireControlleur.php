@@ -32,7 +32,10 @@
                         $id = $_SESSION['user']['id'];
                         $vol_id = $trajet['id'];
                         $date_depart = $_SESSION['date_depart'];
+                        
                         $reservation_id=$reservationModelObject->createReservation($id, $vol_id, $date_depart, $prixTotal);
+                        $_SESSION['reservation_a_modifier'] = $reservation_id;
+                        
                         foreach($_SESSION['options_choisies'] as $option_id):
                             $reservationModelObject->createOptionReservation($reservation_id,$option_id);
                         endforeach;
