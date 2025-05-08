@@ -7,9 +7,21 @@ class MesReservationsControlleur{
         $user_id=$_SESSION['user']['id'];
         $getReservations=new newReservationModel();
         $reservations=$getReservations->getReservationsByUser($user_id);
-       
-
+       if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['annuler'])){
+        $reservation_id = $_POST['annuler'];
+        $model = new newReservationModel();
+        $model->deleteReservation($reservation_id);
+        header('Location: http://localhost:8000/mesReservations.php');
+       }else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modifier'])){
+        $reservation_id = $_POST['modifier'];
+        $model = new newReservationModel();
+        $model->updateReservationDate($reservation_id, $_POST['date_voyage']);
+        header('Location: http://localhost:8000/mesReservations.php');
+       }else {
         require './Vues/mesReservations.php';
+       }
+
+        
     }
     
 }

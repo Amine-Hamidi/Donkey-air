@@ -51,9 +51,12 @@
                 <td><?= htmlspecialchars($reservation['date_voyage']) ?></td>
                 <td><?= htmlspecialchars($reservation['total']) ?> €</td>
                 <td class="actions">
-                <a href="modifierReservation.php?id=<?= $reservation['id'] ?>">Modifier</a> -
-                <a href="annulerReservation.php?id=<?= $reservation['id'] ?>" onclick="return confirm('Confirmer l’annulation ?')">Annuler</a>
-                </td>
+                <form method="post">
+                    <button type="submit" name="modifier" value="<?= $reservation['id'] ?>">Modifier</button> -
+                    <button type="submit" name="annuler" value="<?= $reservation['id'] ?>" onclick="return confirm('Confirmer l’annulation ?')">Annuler</button>
+                </form>
+            </td>
+                
             <?php endforeach; ?>
             </tr>
         </tbody>
