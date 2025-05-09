@@ -7,8 +7,8 @@ Class User extends Base{
         parent::__construct();
     }
 
-    public function save($nom,$prenom,$genre,$email,$telephone,$password){
-        $stmt=$this->pdo->prepare("INSERT INTO users (nom,prenom,email,telephone,genre,password) VALUES (:nom, :prenom, :email, :telephone, :genre, :password)");
+    public function save($nom,$prenom,$genre,$email,$telephone, $password){
+        $stmt=$this->pdo->prepare("INSERT INTO users (nom,prenom,email,telephone,genre, password) VALUES (:nom, :prenom, :email, :telephone, :genre, :password)");
         $resulat=$stmt->execute([
             'nom'=>$nom,
             'prenom'=>$prenom,
@@ -41,19 +41,19 @@ Class User extends Base{
         
     }
     
-    public function update($id, $nom, $prenom, $genre, $email, $telephone, $password){
+    public function update($nom, $prenom, $genre, $email, $telephone,$id){
 
-        $stmt=$this->pdo->prepare("UPDATE users SET nom= :nom, prenom= :prenom, genre= :genre, email= :email, telephone= :telephone, password= :password 
-                                    where id=:id");
+        $stmt=$this->pdo->prepare("UPDATE users SET nom= :nom, prenom= :prenom, genre= :genre, email= :email, telephone= :telephone where id= :id");
         
-        return $stmt->execute(['id'=>$id,
+        return $stmt->execute([
                             'nom'=>$nom,
                             'prenom'=>$prenom,
                             'genre'=>$genre,
                             'email'=>$email,
                             'telephone'=>$telephone,
-                            'password'=>$password]);
+                            'id'=>$id]);
     } 
+   
 }
 
 

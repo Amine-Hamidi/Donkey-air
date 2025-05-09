@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
     </div>
 
     <nav class="header-nav">
-        <a href="#">Mon compte</a>
+        <a href="monCompte.php">Mon compte</a>
         <a href="mesReservations.php">Mes réservations</a>
         <a href="search.php">Trouver un vol</a>
     </nav>
